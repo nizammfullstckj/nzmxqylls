@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Love Floating</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ffe6f0, #ffffff);
+        font-family: Arial, sans-serif;
+    }
+
+    .love-text {
+        position: absolute;
+        color: #ff3d8b;
+        font-size: 22px;
+        font-weight: bold;
+        opacity: 0;
+        animation: floatText 6s linear forwards;
+        pointer-events: none;
+        white-space: nowrap;
+        text-shadow: 0 0 8px rgba(255, 105, 180, 0.6);
+    }
+
+    @keyframes floatText {
+        0% {
+            transform: translateY(0) scale(0.8);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-150px) scale(1.2);
+            opacity: 0;
+        }
+    }
+
+    /* Glitter */
+    .glitter {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: radial-gradient(circle, #fff, #ff69b4);
+        border-radius: 50%;
+        opacity: 0;
+        animation: glitterAnim 3s linear forwards;
+        pointer-events: none;
+    }
+
+    @keyframes glitterAnim {
+        0% {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        30% {
+            opacity: 1;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<script>
+/* Generate teks cinta random */
+function spawnLoveText() {
+    const text = document.createElement("div");
+    text.className = "love-text";
+    text.innerText = "i love youu qylaaa";
+
+    const x = Math.random() * window.innerWidth;
+    const y = Math.random() * window.innerHeight;
+
+    text.style.left = x + "px";
+    text.style.top = y + "px";
+    text.style.fontSize = (18 + Math.random() * 16) + "px";
+
+    document.body.appendChild(text);
+
+    setTimeout(() => {
+        text.remove();
+    }, 6000);
+}
+
+/* Generate glitter pink */
+function spawnGlitter() {
+    const glitter = document.createElement("div");
+    glitter.className = "glitter";
+
+    glitter.style.left = Math.random() * window.innerWidth + "px";
+    glitter.style.top = Math.random() * window.innerHeight + "px";
+
+    document.body.appendChild(glitter);
+
+    setTimeout(() => {
+        glitter.remove();
+    }, 3000);
+}
+
+/* Interval math random memenuhi layar */
+setInterval(() => {
+    spawnLoveText();
+}, 350);
+
+setInterval(() => {
+    spawnGlitter();
+}, 120);
+</script>
+
+</body>
+</html>
